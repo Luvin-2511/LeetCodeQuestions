@@ -1,0 +1,29 @@
+class Solution {
+public:
+    set<vector<int>>s;
+     void combSum(vector<int>& arr, int tar , int idx ,vector<vector<int>>& ans,vector<int> &comb){
+        if(idx==arr.size() || tar<0){
+            return ;
+        }
+        if(tar==0){
+            if(s.find(comb)==s.end()){
+                   ans.push_back(comb);
+                    s.insert(comb);
+            }
+            return ;
+        }
+        comb.push_back(arr[idx]);
+        //include
+        combSum(arr,tar-arr[idx],idx+1,ans,comb);
+        combSum(arr,tar-arr[idx],idx,ans,comb);
+        comb.pop_back();
+        combSum(arr,tar,idx+1,ans,comb);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& arr, int tar) {
+        vector<vector<int>> ans;
+        vector<int>comb;
+        combSum(arr,tar,0,ans,comb);
+        return ans;
+    }
+};

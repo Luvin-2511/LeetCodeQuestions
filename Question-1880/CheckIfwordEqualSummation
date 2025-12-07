@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool isSumEqual(string firstWord, string secondWord, string targetWord) {
+        return wordToValue(firstWord)+ wordToValue(secondWord) ==  wordToValue(targetWord);
+    }
+    int wordToValue(string s){
+        int val = 0;
+        for(char c:s){
+            val = val*10 +(c-'a');
+        }
+        return val;
+    }
+};
